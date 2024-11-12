@@ -2,6 +2,9 @@ package com.github.igomarcelino.projeto_dev_superior.entities;
 
 import jakarta.persistence.*;
 
+/**
+ * Classe Game, classe entidade da aplicacao
+ * */
 @Entity
 @Table(name = "tb_game")
 public class Game {
