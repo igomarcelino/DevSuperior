@@ -12,6 +12,11 @@ public class GameMinDTO {
     public GameMinDTO() {
     }
 
+    /**
+     * Esse construtor serve para criar uma versao reduzida da Entidade Game e devolver com um dto
+     * para o controller
+     *
+     * */
     public GameMinDTO(Game entity) {
         id = entity.getId();
         title = entity.getTitle();
