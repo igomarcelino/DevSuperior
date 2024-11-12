@@ -1,6 +1,7 @@
 package com.github.igomarcelino.projeto_dev_superior.dto;
 
 import com.github.igomarcelino.projeto_dev_superior.entities.Game;
+import com.github.igomarcelino.projeto_dev_superior.projections.GameMinProjetion;
 
 public class GameMinDTO {
     private Long id;
@@ -24,6 +25,14 @@ public class GameMinDTO {
         imgUrl = entity.getImgUrl();
         shortDescription = entity.getShortDescription();
 }
+
+    public GameMinDTO(GameMinProjetion gameMinProjetion){
+        id = gameMinProjetion.getId();
+        title = gameMinProjetion.getTitle();
+        year = gameMinProjetion.getYear();
+        imgUrl = gameMinProjetion.getImgUrl();
+        shortDescription = gameMinProjetion.getShortDescription();
+    }
 
     public Long getId() {
         return id;

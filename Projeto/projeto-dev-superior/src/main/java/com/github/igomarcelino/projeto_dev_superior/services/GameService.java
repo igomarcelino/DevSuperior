@@ -2,7 +2,6 @@ package com.github.igomarcelino.projeto_dev_superior.services;
 
 import com.github.igomarcelino.projeto_dev_superior.dto.GameDTO;
 import com.github.igomarcelino.projeto_dev_superior.dto.GameMinDTO;
-import com.github.igomarcelino.projeto_dev_superior.entities.Game;
 import com.github.igomarcelino.projeto_dev_superior.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +30,20 @@ public class GameService {
      * Aqui retornara um game com toda sua descricao
      * */
     @Transactional(readOnly = true)
-    public GameDTO findById(Long id){
+    public GameDTO findById(Long gameId){
        return gameRepository.
-               findById(id).
+               findById(gameId).
                map(game -> new GameDTO(game)).
                get();
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByGameList(Long listId){
+        return gameRepository
+                .searchByList(listId)
+                .stream().
+                map(gameMinProjetion -> new GameMinDTO(gameMinProjetion)).
+                toList();
+
     }
 }
