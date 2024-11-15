@@ -2,6 +2,7 @@ package com.github.igomarcelino.projeto_dev_superior.controllers;
 
 import com.github.igomarcelino.projeto_dev_superior.dto.GameDTO;
 import com.github.igomarcelino.projeto_dev_superior.dto.GameMinDTO;
+import com.github.igomarcelino.projeto_dev_superior.dto.ReplacementDTO;
 import com.github.igomarcelino.projeto_dev_superior.entities.Game;
 import com.github.igomarcelino.projeto_dev_superior.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,6 @@ public class GameController {
     public GameDTO findById(@PathVariable Long id){
         return gameService.findById(id);
     }
+
 
 }
