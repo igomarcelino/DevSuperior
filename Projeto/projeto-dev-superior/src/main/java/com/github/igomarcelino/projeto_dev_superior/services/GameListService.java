@@ -2,6 +2,7 @@ package com.github.igomarcelino.projeto_dev_superior.services;
 
 import com.github.igomarcelino.projeto_dev_superior.dto.GameListDTO;
 import com.github.igomarcelino.projeto_dev_superior.entities.GameList;
+import com.github.igomarcelino.projeto_dev_superior.exceptions.ElementNotFoundException;
 import com.github.igomarcelino.projeto_dev_superior.projections.GameMinProjetion;
 import com.github.igomarcelino.projeto_dev_superior.repositories.GameListRepository;
 import com.github.igomarcelino.projeto_dev_superior.repositories.GameRepository;
@@ -22,11 +23,15 @@ public class GameListService {
 
     @Transactional(readOnly = true)
     public List<GameListDTO> findAll(){
-        return gameListRepository.
-                findAll().
-                stream().
-                map(gameList -> new GameListDTO(gameList)).
-                toList();
+        if (gameListRepository.findAll().isEmpty()){
+            throw new ElementNotFoundException("A lista esta vazia");
+        }else {
+            return gameListRepository.
+                    findAll().
+                    stream().
+                    map(gameList -> new GameListDTO(gameList)).
+                    toList();
+        }
     }
     @Transactional
     public void updatePosition(Long listId, int sourceIndex, int destinationIndex){
