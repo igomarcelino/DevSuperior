@@ -44,15 +44,12 @@ public class GameService {
 
     @Transactional(readOnly = true)
     public List<GameMinDTO> findByGameList(Long listId) {
+        List<GameMinDTO> gameMinDTOList= gameRepository.searchByList(listId).stream().map(gameMinProjetion -> new GameMinDTO(gameMinProjetion)).toList();
 
-        if (gameRepository.searchByList(listId).isEmpty())
-            throw new ElementNotFoundException("A lista com o id %d nao existe", listId);
-        else
-            return gameRepository
-                    .searchByList(listId)
-                    .stream().
-                    map(gameMinProjetion -> new GameMinDTO(gameMinProjetion)).
-                    toList();
+        if (gameMinDTOList.isEmpty()){
+            throw new ElementNotFoundException("A lista esta vazia");
+        }else
+            return gameMinDTOList;
 
     }
 }
